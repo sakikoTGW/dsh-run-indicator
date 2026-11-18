@@ -1,0 +1,39 @@
+{
+  "name": "dsh-run-indicator",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Keeps a running conversation visible after its workspace group is collapsed: the group header shows a live activity dot while any conversation inside it is still working.",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml"
+  ],
+  "dsh": {
+    "manifestVersion": 1,
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-workspace"
+      ]
+    }
+  },
+  "scripts": {
+    "prepublishOnly": "node -e \"const fs=require(\u0027fs\u0027);const bad=[];for(const f of [\u0027package.json\u0027,\u0027cordis.patch.yml\u0027,\u0027client.js\u0027,\u0027index.js\u0027]){try{const b=fs.readFileSync(f);if(b[0]===0xEF\u0026\u0026b[1]===0xBB\u0026\u0026b[2]===0xBF)bad.push(f)}catch(e){}}if(bad.length){console.error(\u0027UTF-8 BOM in: \u0027+bad.join(\u0027, \u0027));process.exit(1)}JSON.parse(fs.readFileSync(\u0027package.json\u0027,\u0027utf8\u0027));console.log(\u0027manifest ok\u0027)\""
+  },
+  "license": "MIT",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "cordis",
+    "deepseek-harness"
+  ]
+}

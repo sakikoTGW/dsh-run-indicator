@@ -1,0 +1,4 @@
+# dsh-run-indicator bundle patch: one Host row. All behavior is in the Client half.
+- insert:
+    - id: run-indicator
+      name: 'dsh-run-indicator'
